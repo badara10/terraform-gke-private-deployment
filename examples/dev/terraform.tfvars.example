@@ -1,0 +1,15 @@
+# GCP Configuration
+credentials_file = "/home/badara/CREDENTIALS/crucial-respect-470815-u3-be030965253b.json"
+project_id       = "crucial-respect-470815-u3"
+region           = "us-central1"
+
+# Cluster Configuration
+cluster_name = "private-gke-cluster"
+node_count   = 3
+machine_type = "e2-medium"
+preemptible  = false
+
+# Network Configuration
+create_vpc  = true
+vpc_name    = "gke-vpc"
+subnet_name = "gke-subnet"

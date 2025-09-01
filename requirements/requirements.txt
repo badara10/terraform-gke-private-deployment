@@ -1,0 +1,81 @@
+This sounds more daunting than it is, as ready examples of this exist on the internet and require only slight adaptation. The hiring manager will be running the code, so it’s helpful for it to run.
+
+Please put the code on personal github and share the link for me to send over to the hiring manager to look at.
+
+**Challenge Instructions**
+
+You're working as a Senior DevOps Engineer at HHC Health. Security, privacy, and reproducibility are critical. You will build a small Terraform-based solution consisting of two reusable modules and minimal example configuration.
+
+**Objective**
+
+Create two Terraform modules:
+
+1. A module that provisions a private Google Kubernetes Engine (GKE) cluster in a Google Cloud project with the following requirements:
+   1. All nodes are private (no public IPs).
+   2. The cluster may optionally use a dedicated VPC (module should support creating a new VPC or using an existing one).
+   3. The IP block 10.1.2.0/18 is allocated for the cluster.
+   4. Provide clear module inputs/outputs suitable for reuse across environments.
+   5. Include documentation for the module.
+2. A module that deploys a Helm chart into the cluster with the following requirements:
+3. Deploy a hello-nginx image.
+4. Expose the application on port 80.
+5. Provide clear module inputs/outputs suitable for reuse across environments.
+6. Include brief documentation for the module.
+
+Additionally, briefly document your overall implementation plan and describe your approach for both modules.
+
+**Deliverables**
+
+* Terraform module: Private GKE cluster
+* Terraform module: Helm hello-nginx deployment
+* Example configuration wiring the modules together for a single environment (e.g., examples/dev)
+* Documentation:
+  * Implementation plan (high-level approach and assumptions)
+  * Module documentation for both modules (purpose, inputs/outputs, usage example)
+    * Again, can be lean
+
+**Functional Requirements**
+
+* GKE cluster module:
+  * Nodes must **not** have public IPs.
+  * Expose an option to either create a dedicated VPC/subnets or use pre-existing networking resources.
+  * Allocate appropriate portion or the entire IP block 10.1.2.0/18 for the cluster. (Hint: the design choices will need to be defensible)
+  * Provide outputs useful for downstream consumers (e.g., cluster endpoint, CA cert, network references, etc.).
+* Helm module:
+  * Installs a hello-nginx image as a Helm release into a specified namespace.
+  * Exposes the application on port 80.
+  * Accepts inputs that allow configuring release name, namespace, and any minimal chart values.
+
+**Non-Functional Requirements**
+
+* Code must be organized as reusable Terraform modules under a clear folder structure.
+* Modules should be idempotent and safe to apply multiple times.
+* Naming conventions should be consistent and environment-friendly.
+* Documentation must clearly state module purpose, required inputs, and expected outputs.
+
+**Constraints**
+
+* Use Terraform for all infrastructure configuration.
+* Keep provider configuration minimal and environment-agnostic.
+* Do not hardcode sensitive values.
+* The example configuration should demonstrate how to compose both modules together.
+
+**Project Structure (expected)**
+
+* modules/gke: Terraform module for private GKE cluster
+* modules/helm_app: Terraform module for hello-nginx Helm deployment
+* examples/dev: Minimal example wiring both modules
+* docs/: Documentation for approach and architecture
+
+**Success Criteria**
+
+* Two working Terraform modules that meet the stated requirements.
+* Clear, concise documentation for both modules and the overall approach.
+* Example configuration composes both modules coherently.
+* The repository can be entered via the Nix environment and a local documentation server can be started without errors.
+
+**Notes**
+
+* Focus on correctness, privacy, and reusability, reflecting Health Tech security posture.
+* The instructions intentionally avoid prescribing specific implementation details.
+
