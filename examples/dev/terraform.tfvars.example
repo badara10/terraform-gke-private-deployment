@@ -7,9 +7,13 @@ region           = "us-central1"
 cluster_name = "private-gke-cluster"
 node_count   = 3
 machine_type = "e2-medium"
+disk_size_gb = 30          # Reduced for free tier
+disk_type    = "pd-standard"
 preemptible  = false
 
 # Network Configuration
 create_vpc  = true
 vpc_name    = "gke-vpc"
 subnet_name = "gke-subnet"
+
+# For free tier configuration, see terraform.tfvars.free-tier

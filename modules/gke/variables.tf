@@ -89,3 +89,15 @@ variable "node_tags" {
   type        = list(string)
   default     = []
 }
+
+variable "disk_size_gb" {
+  description = "Size of the disk attached to each node (in GB)"
+  type        = number
+  default     = 30  # Reduced from default 100GB for free tier
+}
+
+variable "disk_type" {
+  description = "Type of the disk attached to each node"
+  type        = string
+  default     = "pd-standard"  # Cheaper than pd-ssd
+}

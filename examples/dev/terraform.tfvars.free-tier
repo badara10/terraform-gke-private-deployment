@@ -1,0 +1,36 @@
+# Free Tier Configuration for Google Cloud
+# This configuration is optimized to stay within GCP free tier limits
+
+# Authentication
+credentials_file = "/home/badara/CREDENTIALS/crucial-respect-470815-u3-be030965253b.json"
+project_id       = "crucial-respect-470815-u3"
+
+# Region - us-central1 offers good free tier resources
+region = "us-central1"
+
+# Cluster Configuration
+cluster_name = "private-gke-cluster"
+
+# Node Configuration - Optimized for free tier
+node_count   = 2              # Minimum viable nodes
+machine_type = "e2-micro"     # Smallest instance type (0.25 vCPU, 1GB RAM)
+disk_size_gb = 20             # Minimum disk size to stay within quota
+disk_type    = "pd-standard"  # Standard persistent disk (cheaper)
+preemptible  = true           # Preemptible VMs are ~80% cheaper
+
+# Network Configuration
+create_vpc  = true
+vpc_name    = "gke-vpc"
+subnet_name = "gke-subnet"
+
+# Free Tier Limits Reference:
+# - Compute Engine: 744 hours/month of e2-micro instance
+# - Storage: 30 GB-months HDD
+# - Network: 1 GB egress (excluding China and Australia)
+# - GKE: Management fee waived for one zonal cluster
+#
+# Monthly Cost Estimate with these settings:
+# - GKE Management: $0 (first cluster free)
+# - 2x e2-micro preemptible: ~$3-4/month
+# - 40 GB standard disk: ~$1.60/month
+# - Total: ~$5-6/month (mostly covered by free tier credits)

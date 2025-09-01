@@ -57,3 +57,15 @@ variable "preemptible" {
   type        = bool
   default     = false
 }
+
+variable "disk_size_gb" {
+  description = "Size of the disk attached to each node (in GB)"
+  type        = number
+  default     = 30  # Free tier friendly
+}
+
+variable "disk_type" {
+  description = "Type of the disk attached to each node"
+  type        = string
+  default     = "pd-standard"  # Cheaper than pd-ssd
+}

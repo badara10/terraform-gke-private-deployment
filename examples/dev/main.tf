@@ -90,6 +90,8 @@ module "gke" {
   node_count            = var.node_count
   machine_type          = var.machine_type
   preemptible           = var.preemptible
+  disk_size_gb          = var.disk_size_gb
+  disk_type             = var.disk_type
   service_account_email = google_service_account.gke_nodes.email
   node_labels = {
     environment = "dev"
